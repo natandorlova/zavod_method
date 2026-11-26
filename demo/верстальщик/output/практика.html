@@ -38,7 +38,7 @@ summary { color:var(--green); font-weight:750; cursor:pointer }
 .history { max-width:72ch; margin-bottom:16px }
 
 [hidden] { display:none !important }
-.layout { display:grid; grid-template-columns:minmax(0, 1fr) minmax(0,1.45fr); gap:24px; align-items:start }
+.layout { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:24px; align-items:start }
 .situation, .answers, .result { padding:clamp(18px,3vw,28px); background:var(--card); border-radius:16px }
 .situation figure { margin:0 0 16px }
 .situation img { display:block; width:100%; border-radius:8px }
@@ -56,7 +56,10 @@ button:focus-visible, summary:focus-visible { outline:3px solid var(--green); ou
 .result { margin-top:18px }
 .result p { margin:8px 0 }
 .result button { margin:6px 6px 0 0 }
-#retry { background:var(--paper); color:var(--green); border:1px solid var(--gray) }
+@media (min-width:761px) and (min-height:580px) {
+  .situation { position:sticky; top:16px }
+  .situation img { max-height:38vh; object-fit:contain }
+}
 @media(max-width:760px) { .layout { grid-template-columns:1fr } }
 </style></head><body><main>
 <div id="first-conversation">
@@ -69,14 +72,13 @@ button:focus-visible, summary:focus-visible { outline:3px solid var(--green); ou
 <fieldset id="move" aria-describedby="move-hint"><legend>Выберите следующий ход</legend><label class="choice"><input type="radio" name="move" value="a" required><span><strong>Ход А.</strong> «Могу подтвердить, что по вторникам будете уходить раньше».</span></label><label class="choice"><input type="radio" name="move" value="b" required><span><strong>Ход Б.</strong> «Правильно понимаю, что для вас важен именно вторник? Я уточню, можно ли сдвинуть начало дня, и вернусь завтра».</span></label>
 <p class="hint" id="move-hint" tabindex="-1" hidden>Какую часть графика вы уполномочены подтвердить сейчас?</p></fieldset>
 <fieldset id="reason" aria-describedby="reason-hint"><legend>Выберите обоснование</legend><label class="choice"><input type="radio" name="reason" value="1" required><span><strong>Обоснование 1.</strong> «Это помогает проверить вариант в допустимых границах и обозначить срок».</span></label><label class="choice"><input type="radio" name="reason" value="2" required><span><strong>Обоснование 2.</strong> «Это сразу закрывает возражение, даже если график ещё не проверен».</span></label>
-<p class="hint" id="reason-hint" tabindex="-1" hidden>Что остаётся открытым после вашей реплики?</p></fieldset>
+<p class="hint" id="reason-hint" tabindex="-1" hidden>Подумайте, можно ли пообещать ранний уход, пока команда ещё не согласовала график.</p></fieldset>
 <p id="retry-info" hidden>Измените ответ и отправьте его ещё раз.</p>
 <button id="submit" type="submit">Отправить ответ</button>
 </form>
-<section id="result" class="result" tabindex="-1" hidden><h2>Полный разбор</h2>
+<section id="result" class="result" tabindex="-1" hidden><h2>ВЕРНО!</h2>
 <p class="speaker">Вы уточнили приоритет и предложили проверить реальную возможность.</p>
 <p><strong>Ход Б и обоснование 1</strong></p><p>Гибкий график обсуждаем, но не подтверждаем заранее. Ход А создаёт ожидание, которое команда может не поддержать. Ход Б позволяет проверить альтернативу и договориться о следующем контакте. Если график окажется невозможным и ранний уход для кандидата обязателен, отказ будет обоснованным исходом.</p>
-<button type="button" id="retry">Пройти разговор ещё раз</button>
 <button type="button" id="continue">К следующему разговору</button>
 </section>
 </div></div></div>
@@ -92,10 +94,6 @@ const submit = document.querySelector('#submit');
 const firstConversation = document.querySelector('#first-conversation');
 const nextTitle = document.querySelector('#next-title');
 const nextConversation = document.querySelector('#next-conversation');
-function setAnswerLocked(locked) {
-  form.querySelectorAll('input').forEach(input => { input.disabled = locked; });
-  submit.hidden = locked;
-}
 form.addEventListener('submit', event => {
   event.preventDefault();
   if (!result.hidden) return;
@@ -111,15 +109,10 @@ form.addEventListener('submit', event => {
     firstVisibleHint.focus();
     return;
   }
-  setAnswerLocked(true);
+  form.querySelectorAll('fieldset').forEach(group => { group.disabled = true; });
+  submit.hidden = true;
   result.hidden = false;
   result.focus();
-});
-document.querySelector('#retry').addEventListener('click', () => {
-  form.reset();
-  setAnswerLocked(false);
-  result.hidden = true;
-  form.querySelector('input').focus();
 });
 document.querySelector('#continue').addEventListener('click', () => {
   firstConversation.hidden = true;

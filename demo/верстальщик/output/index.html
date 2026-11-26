@@ -25,6 +25,10 @@ a:focus-visible, textarea:focus-visible { outline:3px solid var(--green); outlin
 #task:not(:target) { display:none }
 h2 { margin:0 0 12px; line-height:1.2 }
 textarea { display:block; width:100%; min-height:105px; margin:6px 0 16px; padding:10px; border:1px solid var(--gray); border-radius:6px; font:inherit }
+[hidden] { display:none !important }
+#case-answer button { min-height:48px; padding:10px 16px; border:0; border-radius:8px; background:var(--green); color:var(--paper); font:inherit; font-weight:750; cursor:pointer }
+#case-answer button:focus-visible, summary:focus-visible { outline:3px solid var(--green); outline-offset:4px }
+#diagnosis { margin-top:18px }
 summary { color:var(--green); font-weight:750; cursor:pointer }
 @media (max-width:700px) { .scene { grid-template-columns:1fr } .scene img { height:auto } }
 #task article { background:var(--paper); padding:16px; margin:12px 0; border-radius:8px }
@@ -53,9 +57,13 @@ summary { color:var(--green); font-weight:750; cursor:pointer }
 <section id="task" tabindex="-1">
 <a class="back" href="#scene">← К сцене</a><p class="speaker">Ваш ход</p><h2>Где разошлись ожидания?</h2>
 <p>Найдите в разговоре три момента, когда Антон мог повлиять на итог. Запишите, что он сделал и как Марина могла это понять. Затем ответьте себе: что именно Марина считала согласованным, когда сказала «да»?</p>
-<details><summary>Подсказка</summary><p>Если трудно начать, можно перечитать реплику Антона о повышении и последнюю реплику Марины.</p></details><label for="notes">Ваши наблюдения</label>
+<details><summary>Подсказка</summary><p>Если трудно начать, можно перечитать реплику Антона о повышении и последнюю реплику Марины.</p></details>
+<form id="case-answer">
+<label for="notes">Ваши наблюдения</label>
 <textarea id="notes"></textarea>
-<details id="diagnosis"><summary>Открыть разбор</summary>
+<button type="submit">Отправить мой ответ</button>
+</form>
+<details id="diagnosis" hidden><summary>Обратная связь по кейсу</summary>
 <article><h3>Представление оффера</h3><p><strong>Антон.</strong> Перечислил условия, хотя знал, что Марине важна самостоятельность. Не уточнил её критерии выбора.</p><p><strong>Марина.</strong> Получила общие сведения о роли. Ей по-прежнему неясно, какие решения она сможет принимать сама.</p></article><article><h3>Разговор об окладе и другом предложении</h3><p><strong>Антон.</strong> Стал защищать оклад и критиковать другую компанию, не выяснив, по каким условиям Марина сравнивает варианты.</p><p><strong>Марина.</strong> Назвала свои ожидания и сообщила о другом предложении. Ответ Антона не помог ей сопоставить условия.</p></article><article><h3>Просьба пересмотреть условия</h3><p><strong>Антон.</strong> Без заранее проверенных границ пообещал повышение и дополнительные полномочия.</p><p><strong>Марина.</strong> Услышала обещание и, как стало ясно позже, считала эти условия частью оффера.</p></article><article><h3>Пауза и предварительное согласие</h3><p><strong>Антон.</strong> Потребовал ответ к вечеру, затем подтвердил письмом только оклад и дату. Не уточнил, на каких условиях Марина согласилась.</p><p><strong>Марина.</strong> Согласилась в заданный срок. После выхода выяснилось, что стороны по-разному поняли договорённость.</p></article><p>Марина задавала вопросы и просила время. Это нормальная часть выбора. В этой истории расхождение возникло из-за того, что Антон подтвердил на словах то, что ещё не было согласовано, и не сверил итог. Посмотрим, какие ещё привычки руководителя приводят к похожим проблемам.</p>
 </details>
 <a class="next" href="практика.html">К финальной практике <span aria-hidden="true">→</span></a>
@@ -63,10 +71,15 @@ summary { color:var(--green); font-weight:750; cursor:pointer }
 </main>
 <script>
 const diagnosis = document.querySelector('#diagnosis');
-const diagnosisTitle = diagnosis.querySelector('h3');
-diagnosisTitle.tabIndex = -1;
-diagnosis.addEventListener('toggle', () => {
-  if (diagnosis.open) diagnosisTitle.focus();
+const caseAnswer = document.querySelector('#case-answer');
+const notes = document.querySelector('#notes');
+caseAnswer.addEventListener('submit', event => {
+  event.preventDefault();
+  notes.readOnly = true;
+  caseAnswer.querySelector('button').hidden = true;
+  diagnosis.hidden = false;
+  diagnosis.open = true;
+  diagnosis.querySelector('summary').focus();
 });
 window.addEventListener('hashchange', () => {
   if (location.hash === '#task') document.querySelector('#task').focus();
