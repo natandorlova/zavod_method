@@ -57,79 +57,74 @@ button:focus-visible, summary:focus-visible { outline:3px solid var(--green); ou
 .result p { margin:8px 0 }
 .result button { margin:6px 6px 0 0 }
 #retry { background:var(--paper); color:var(--green); border:1px solid var(--gray) }
-#memo { margin-top:16px }
-#memo li { margin-block:8px }
-#memo li:nth-child(1), #memo li:nth-child(4) { padding-left:8px; border-left:3px solid var(--orange) }
 @media(max-width:760px) { .layout { grid-template-columns:1fr } }
 </style></head><body><main>
+<div id="first-conversation">
 <header><p class="module">Финальная практика</p><h1>Разговор 1. Другие условия</h1>
-<details class="context"><summary>О финальной практике</summary><p>Вы подтвердили условия, объяснили роль, спросили о приоритетах и оставили время на решение. Кандидат всё равно может хотеть других условий, сомневаться или сравнивать предложения. Пройдите три коротких разговора. В каждом выберите следующий ход и его обоснование. По итогам вы увидите, какие действия уже получаются и что стоит повторить.</p></details></header>
+</header>
 <div class="layout"><aside class="situation"><figure><img src="кандидат.png" alt="Кандидат обсуждает рабочий график за столом переговоров."></figure>
 <p class="speaker">Вымышленная ситуация</p><h2>Условия разговора</h2><p>Кандидату нужно уезжать из офиса раньше по вторникам. Повысить оклад нельзя. Гибкое начало рабочего дня можно обсуждать, но график нужно сверить с командой. Ответ возможен завтра.</p>
-<details id="memo"><summary>Памятка. Пять правил переговоров по офферу</summary><ol><li><strong>До звонка определите, что можете подтвердить.</strong> Разделите условия на фиксированные, доступные для обсуждения и требующие согласования. Проверьте, какие альтернативы реально предложить.</li><li><strong>Выясните, по каким критериям кандидат выбирает.</strong> Спросите, что для него важно, какое условие обязательно и какую задачу решает его просьба.</li><li><strong>Покажите ценность предложения на подтверждённых условиях.</strong> Свяжите приоритет кандидата с конкретной особенностью роли. Уточните, где у этого условия границы.</li><li><strong>Отвечайте на причину сомнения и держите границы.</strong> Дайте договорить, выясните причину и ответьте по существу. Если условия требуют согласования, скажите, что уточните и когда вернётесь.</li><li><strong>В конце сверяйте итог и следующий шаг.</strong> Назовите согласованное, открытые вопросы, ответственных и сроки. Проверьте, одинаково ли стороны поняли итог, и зафиксируйте договорённости письменно.</li></ol></details></aside>
+</aside>
 <div><form id="practice" class="answers">
 <fieldset id="move" aria-describedby="move-hint"><legend>Выберите следующий ход</legend><label class="choice"><input type="radio" name="move" value="a" required><span><strong>Ход А.</strong> «Могу подтвердить, что по вторникам будете уходить раньше».</span></label><label class="choice"><input type="radio" name="move" value="b" required><span><strong>Ход Б.</strong> «Правильно понимаю, что для вас важен именно вторник? Я уточню, можно ли сдвинуть начало дня, и вернусь завтра».</span></label>
 <p class="hint" id="move-hint" tabindex="-1" hidden>Какую часть графика вы уполномочены подтвердить сейчас?</p></fieldset>
 <fieldset id="reason" aria-describedby="reason-hint"><legend>Выберите обоснование</legend><label class="choice"><input type="radio" name="reason" value="1" required><span><strong>Обоснование 1.</strong> «Это помогает проверить вариант в допустимых границах и обозначить срок».</span></label><label class="choice"><input type="radio" name="reason" value="2" required><span><strong>Обоснование 2.</strong> «Это сразу закрывает возражение, даже если график ещё не проверен».</span></label>
 <p class="hint" id="reason-hint" tabindex="-1" hidden>Что остаётся открытым после вашей реплики?</p></fieldset>
-<p id="retry-info" hidden>Измените ответ и отправьте его ещё раз. Можно свериться с правилами 1 и 4 памятки.</p>
+<p id="retry-info" hidden>Измените ответ и отправьте его ещё раз.</p>
 <button id="submit" type="submit">Отправить ответ</button>
 </form>
 <section id="result" class="result" tabindex="-1" hidden><h2>Полный разбор</h2>
-<p id="correct" class="speaker" hidden>Вы уточнили приоритет и предложили проверить реальную возможность.</p>
+<p class="speaker">Вы уточнили приоритет и предложили проверить реальную возможность.</p>
 <p><strong>Ход Б и обоснование 1</strong></p><p>Гибкий график обсуждаем, но не подтверждаем заранее. Ход А создаёт ожидание, которое команда может не поддержать. Ход Б позволяет проверить альтернативу и договориться о следующем контакте. Если график окажется невозможным и ранний уход для кандидата обязателен, отказ будет обоснованным исходом.</p>
 <button type="button" id="retry">Пройти разговор ещё раз</button>
 <button type="button" id="continue">К следующему разговору</button>
 </section>
-<section id="next-conversation" class="result" tabindex="-1" hidden><h2>Разговор 2. Сомнение в роли</h2><p>Кандидат сомневается, сможет ли самостоятельно менять процессы. Подтверждено, что он сможет менять распределение обращений. Решения о составе команды согласует директор.</p></section>
-</div></div></main>
+</div></div></div>
+<section id="next-conversation" aria-labelledby="next-title" hidden><h1 id="next-title" tabindex="-1">Разговор 2. Сомнение в роли</h1><p>Кандидат сомневается, сможет ли самостоятельно менять процессы. Подтверждено, что он сможет менять распределение обращений. Решения о составе команды согласует директор.</p></section>
+</main>
 <script>
 const form = document.querySelector('#practice');
 const moveHint = document.querySelector('#move-hint');
 const reasonHint = document.querySelector('#reason-hint');
 const retryInfo = document.querySelector('#retry-info');
 const result = document.querySelector('#result');
-const correct = document.querySelector('#correct');
 const submit = document.querySelector('#submit');
-const memo = document.querySelector('#memo');
+const firstConversation = document.querySelector('#first-conversation');
+const nextTitle = document.querySelector('#next-title');
 const nextConversation = document.querySelector('#next-conversation');
-let attempts = 0;
 function setAnswerLocked(locked) {
   form.querySelectorAll('input').forEach(input => { input.disabled = locked; });
   submit.hidden = locked;
 }
 form.addEventListener('submit', event => {
   event.preventDefault();
+  if (!result.hidden) return;
   const answers = new FormData(form);
   const wrongMove = answers.get('move') !== 'b';
   const wrongReason = answers.get('reason') !== '1';
   const isCorrect = !wrongMove && !wrongReason;
-  attempts += 1;
-  const showHint = attempts === 1 && !isCorrect;
-  moveHint.hidden = !showHint || !wrongMove;
-  reasonHint.hidden = !showHint || !wrongReason;
-  retryInfo.hidden = !showHint;
-  if (showHint) {
-    memo.open = true;
+  moveHint.hidden = !wrongMove;
+  reasonHint.hidden = !wrongReason;
+  retryInfo.hidden = isCorrect;
+  if (!isCorrect) {
     const firstVisibleHint = wrongMove ? moveHint : reasonHint;
     firstVisibleHint.focus();
     return;
   }
-  correct.hidden = !isCorrect;
   setAnswerLocked(true);
   result.hidden = false;
   result.focus();
 });
 document.querySelector('#retry').addEventListener('click', () => {
-  attempts = 0;
   form.reset();
   setAnswerLocked(false);
   result.hidden = true;
-  nextConversation.hidden = true;
   form.querySelector('input').focus();
 });
 document.querySelector('#continue').addEventListener('click', () => {
+  firstConversation.hidden = true;
   nextConversation.hidden = false;
-  nextConversation.focus();
+  nextTitle.focus();
+  window.scrollTo(0, 0);
 });
 </script></body></html>
