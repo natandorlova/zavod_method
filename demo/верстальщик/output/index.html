@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Она же согласилась — Переговоры по офферу</title>
+<style>
+:root { --paper:#FFFFFF; --card:#F6F2ED; --green:#01623C; --orange:#E64302; --gray:#908A84; --ink:#000000 }
+* { box-sizing:border-box }
+body { margin:0; background:var(--paper); color:var(--ink); font: 1rem/1.55 system-ui,sans-serif }
+main { max-width:1200px; margin:auto; padding:clamp(24px,5vw,72px) clamp(18px,5vw,64px) }
+header::before { content:""; display:block; width:64px; height:7px; background:var(--orange); margin-bottom:18px }
+.module { color:var(--green); font-weight:750; margin:0 }
+h1 { font-size:clamp(2rem,5vw,3.65rem); line-height:1.06; letter-spacing:-.045em; margin:8px 0 18px }
+.context { max-width:72ch; margin:0 0 28px }
+.scene { display:grid; grid-template-columns:1.35fr 1fr; border-radius:20px; overflow:hidden; background:var(--card) }
+.scene img { display:block; width:100%; height:100%; object-fit:cover }
+.speech { align-self:center; padding:clamp(22px,4vw,52px) }
+.speaker { color:var(--green); font-weight:800; margin:0 0 12px }
+blockquote { margin:0; font-size:clamp(1.35rem,2.55vw,2rem); line-height:1.27; font-weight:700; letter-spacing:-.025em }
+.next { display:inline-flex; align-items:center; gap:12px; min-height:48px; margin-top:24px; padding:10px 16px; border:1px solid var(--gray); border-radius:8px; color:var(--green); font-weight:750; text-decoration:none }
+.next span { color:var(--orange); font-size:1.45rem; line-height:1 }
+a:focus-visible, textarea:focus-visible { outline:3px solid var(--green); outline-offset:4px }
+#task { margin-top:32px; padding:24px; border-left:6px solid var(--orange); background:var(--card); border-radius:8px }
+#task:not(:target) { display:none }
+h2 { margin:0 0 12px; line-height:1.2 }
+textarea { display:block; width:100%; min-height:105px; margin:6px 0 16px; padding:10px; border:1px solid var(--gray); border-radius:6px; font:inherit }
+summary { color:var(--green); font-weight:750; cursor:pointer }
+@media (max-width:700px) { .scene { grid-template-columns:1fr } .scene img { height:auto } }
+#task article { background:var(--paper); padding:16px; margin:12px 0; border-radius:8px }
+#task h3 { margin:0 }
+#task article p { margin:6px 0 }
+.back { display:inline-block; color:var(--green); margin-bottom:18px }
+.separate:has(#task:target) .story { display:none }
+.separate .scene img { aspect-ratio:1.6; object-position:left center }
+.inline .back { display:none }
+.inline:has(#task:target) .next.story { display:none }
+.history { max-width:72ch; margin-bottom:16px }
+</style>
+</head>
+<body class="inline">
+<main>
+<header id="scene">
+<p class="module">Переговоры по офферу</p>
+<h1 class="story">Она же согласилась</h1>
+<details class="story history"><summary>Перечитать разговор</summary><p>Антон выбрал Марину на роль руководителя группы клиентского сервиса. Он уверен, что осталось назвать условия и договориться о дате выхода.</p><p>На интервью Марина говорила, что хочет сама выстраивать работу команды. На звонке Антон перечисляет оклад, график и задачи. Он не уточняет, что для Марины сейчас важно, и не объясняет, какие решения она сможет принимать сама.</p><p>— Я рассчитывала на более высокий оклад, — говорит Марина. — И у меня есть ещё одно предложение.</p><p>— У нас рыночная зарплата. А в той компании, насколько я знаю, согласовывают каждый шаг.</p><p>Марина спрашивает, можно ли пересмотреть условия. Антон заранее не выяснил, что можно обсуждать. Он отвечает: «Выходите, а через три месяца поднимем оклад и дадим больше самостоятельности». Ни повышение, ни полномочия ещё не согласованы.</p><p>Марина просит время подумать. Антон, который хочет закрыть вакансию сегодня, требует ответ к вечеру. Марина соглашается. Антон подтверждает письмом оклад и дату выхода.</p></details><p class="context story">Через три месяца Марина приносит план изменений и спрашивает о повышении. Антон объясняет, что план надо согласовать с директором, а решения по окладу пока нет.</p>
+</header>
+<div class="scene story">
+<img src="марина-и-антон.png" alt="Марина показывает Антону план изменений. Антон слушает.">
+<div class="speech"><p class="speaker">Марина</p><blockquote>«Я приняла оффер, потому что поняла, что мы об этом договорились».</blockquote></div>
+</div>
+<a class="next story" href="#task">Перейти к заданию <span aria-hidden="true">→</span></a>
+<section id="task" tabindex="-1">
+<a class="back" href="#scene">← К сцене</a><p class="speaker">Ваш ход</p><h2>Где разошлись ожидания?</h2>
+<p>Найдите в разговоре три момента, когда Антон мог повлиять на итог. Запишите, что он сделал и как Марина могла это понять. Затем ответьте себе: что именно Марина считала согласованным, когда сказала «да»?</p>
+<details><summary>Подсказка</summary><p>Если трудно начать, можно перечитать реплику Антона о повышении и последнюю реплику Марины.</p></details><label for="notes">Ваши наблюдения</label>
+<textarea id="notes"></textarea>
+<details id="diagnosis"><summary>Открыть разбор</summary>
+<article><h3>Представление оффера</h3><p><strong>Антон.</strong> Перечислил условия, хотя знал, что Марине важна самостоятельность. Не уточнил её критерии выбора.</p><p><strong>Марина.</strong> Получила общие сведения о роли. Ей по-прежнему неясно, какие решения она сможет принимать сама.</p></article><article><h3>Разговор об окладе и другом предложении</h3><p><strong>Антон.</strong> Стал защищать оклад и критиковать другую компанию, не выяснив, по каким условиям Марина сравнивает варианты.</p><p><strong>Марина.</strong> Назвала свои ожидания и сообщила о другом предложении. Ответ Антона не помог ей сопоставить условия.</p></article><article><h3>Просьба пересмотреть условия</h3><p><strong>Антон.</strong> Без заранее проверенных границ пообещал повышение и дополнительные полномочия.</p><p><strong>Марина.</strong> Услышала обещание и, как стало ясно позже, считала эти условия частью оффера.</p></article><article><h3>Пауза и предварительное согласие</h3><p><strong>Антон.</strong> Потребовал ответ к вечеру, затем подтвердил письмом только оклад и дату. Не уточнил, на каких условиях Марина согласилась.</p><p><strong>Марина.</strong> Согласилась в заданный срок. После выхода выяснилось, что стороны по-разному поняли договорённость.</p></article><p>Марина задавала вопросы и просила время. Это нормальная часть выбора. В этой истории расхождение возникло из-за того, что Антон подтвердил на словах то, что ещё не было согласовано, и не сверил итог. Посмотрим, какие ещё привычки руководителя приводят к похожим проблемам.</p>
+</details>
+<a class="next" href="практика.html">К финальной практике <span aria-hidden="true">→</span></a>
+</section>
+</main>
+<script>
+const diagnosis = document.querySelector('#diagnosis');
+const diagnosisTitle = diagnosis.querySelector('h3');
+diagnosisTitle.tabIndex = -1;
+diagnosis.addEventListener('toggle', () => {
+  if (diagnosis.open) diagnosisTitle.focus();
+});
+window.addEventListener('hashchange', () => {
+  if (location.hash === '#task') document.querySelector('#task').focus();
+  if (location.hash === '#scene') document.querySelector('.next').focus();
+});
+</script>
+</body>
+</html>
