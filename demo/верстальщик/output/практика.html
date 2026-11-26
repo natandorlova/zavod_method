@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Разговор 1. Другие условия</title>
+<style>
+:root { --paper:#FFFFFF; --card:#F6F2ED; --green:#01623C; --orange:#E64302; --gray:#908A84; --ink:#000000 }
+* { box-sizing:border-box }
+body { margin:0; background:var(--paper); color:var(--ink); font: 1rem/1.55 system-ui,sans-serif }
+main { max-width:1200px; margin:auto; padding:clamp(24px,5vw,72px) clamp(18px,5vw,64px) }
+header::before { content:""; display:block; width:64px; height:7px; background:var(--orange); margin-bottom:18px }
+.module { color:var(--green); font-weight:750; margin:0 }
+h1 { font-size:clamp(2rem,5vw,3.65rem); line-height:1.06; letter-spacing:-.045em; margin:8px 0 18px }
+.context { max-width:72ch; margin:0 0 28px }
+.scene { display:grid; grid-template-columns:1.35fr 1fr; border-radius:20px; overflow:hidden; background:var(--card) }
+.scene img { display:block; width:100%; height:100%; object-fit:cover }
+.speech { align-self:center; padding:clamp(22px,4vw,52px) }
+.speaker { color:var(--green); font-weight:800; margin:0 0 12px }
+blockquote { margin:0; font-size:clamp(1.35rem,2.55vw,2rem); line-height:1.27; font-weight:700; letter-spacing:-.025em }
+.next { display:inline-flex; align-items:center; gap:12px; min-height:48px; margin-top:24px; padding:10px 16px; border:1px solid var(--gray); border-radius:8px; color:var(--green); font-weight:750; text-decoration:none }
+.next span { color:var(--orange); font-size:1.45rem; line-height:1 }
+a:focus-visible, textarea:focus-visible { outline:3px solid var(--green); outline-offset:4px }
+#task { margin-top:32px; padding:24px; border-left:6px solid var(--orange); background:var(--card); border-radius:8px }
+#task:not(:target) { display:none }
+h2 { margin:0 0 12px; line-height:1.2 }
+textarea { display:block; width:100%; min-height:105px; margin:6px 0 16px; padding:10px; border:1px solid var(--gray); border-radius:6px; font:inherit }
+summary { color:var(--green); font-weight:750; cursor:pointer }
+@media (max-width:700px) { .scene { grid-template-columns:1fr } .scene img { height:auto } }
+#task article { background:var(--paper); padding:16px; margin:12px 0; border-radius:8px }
+#task h3 { margin:0 }
+#task article p { margin:6px 0 }
+.back { display:inline-block; color:var(--green); margin-bottom:18px }
+.separate:has(#task:target) .story { display:none }
+.separate .scene img { aspect-ratio:1.6; object-position:left center }
+.inline .back { display:none }
+.inline:has(#task:target) .next { display:none }
+.history { max-width:72ch; margin-bottom:16px }
+
+[hidden] { display:none !important }
+.layout { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:24px; align-items:start }
+.situation, .answers, .result { padding:clamp(18px,3vw,28px); background:var(--card); border-radius:16px }
+.situation figure { margin:0 0 16px }
+.situation img { display:block; width:100%; border-radius:8px }
+.situation p { margin:0 0 12px }
+fieldset { min-width:0; border:0; padding:0; margin:0 0 20px }
+legend { font-weight:800; margin-bottom:8px }
+.choice { display:flex; padding:12px; gap:10px; align-items:baseline; margin:6px 0; border:1px solid var(--gray); border-radius:8px; background:var(--paper); cursor:pointer }
+.choice:has(input:checked) { outline:2px solid var(--green); outline-offset:-2px }
+.choice:focus-within { box-shadow:0 0 0 3px var(--green) }
+input { accent-color:var(--green) }
+button { padding:12px 16px; min-height:46px; border:0; border-radius:8px; color:var(--paper); background:var(--green); font:inherit; font-weight:750; cursor:pointer }
+button:focus-visible, summary:focus-visible { outline:3px solid var(--green); outline-offset:4px }
+.hint, .result { border-left:5px solid var(--orange) }
+.hint { margin:12px 0 0; padding:8px 12px; background:var(--paper) }
+.result { margin-top:18px }
+.result p { margin:8px 0 }
+.result button { margin:6px 6px 0 0 }
+@media (min-width:761px) and (min-height:580px) {
+  .situation { position:sticky; top:16px }
+  .situation img { max-height:38vh; object-fit:contain }
+}
+@media(max-width:760px) { .layout { grid-template-columns:1fr } }
+</style></head><body><main>
+<div id="first-conversation">
+<header><p class="module">Финальная практика</p><h1>Разговор 1. Другие условия</h1>
+</header>
+<div class="layout"><aside class="situation"><figure><img src="кандидат.png" alt="Кандидат обсуждает рабочий график за столом переговоров."></figure>
+<p class="speaker">Вымышленная ситуация</p><h2>Условия разговора</h2><p>Кандидату нужно уезжать из офиса раньше по вторникам. Повысить оклад нельзя. Гибкое начало рабочего дня можно обсуждать, но график нужно сверить с командой. Ответ возможен завтра.</p>
+</aside>
+<div><form id="practice" class="answers">
+<fieldset id="move" aria-describedby="move-hint"><legend>Выберите следующий ход</legend><label class="choice"><input type="radio" name="move" value="a" required><span><strong>Ход А.</strong> «Могу подтвердить, что по вторникам будете уходить раньше».</span></label><label class="choice"><input type="radio" name="move" value="b" required><span><strong>Ход Б.</strong> «Правильно понимаю, что для вас важен именно вторник? Я уточню, можно ли сдвинуть начало дня, и вернусь завтра».</span></label>
+<p class="hint" id="move-hint" tabindex="-1" hidden>Какую часть графика вы уполномочены подтвердить сейчас?</p></fieldset>
+<fieldset id="reason" aria-describedby="reason-hint"><legend>Выберите обоснование</legend><label class="choice"><input type="radio" name="reason" value="1" required><span><strong>Обоснование 1.</strong> «Это помогает проверить вариант в допустимых границах и обозначить срок».</span></label><label class="choice"><input type="radio" name="reason" value="2" required><span><strong>Обоснование 2.</strong> «Это сразу закрывает возражение, даже если график ещё не проверен».</span></label>
+<p class="hint" id="reason-hint" tabindex="-1" hidden>Подумайте, можно ли пообещать ранний уход, пока команда ещё не согласовала график.</p></fieldset>
+<p id="retry-info" hidden>Измените ответ и отправьте его ещё раз.</p>
+<button id="submit" type="submit">Отправить ответ</button>
+</form>
+<section id="result" class="result" tabindex="-1" hidden><h2>ВЕРНО!</h2>
+<p class="speaker">Вы уточнили приоритет и предложили проверить реальную возможность.</p>
+<p><strong>Ход Б и обоснование 1</strong></p><p>Гибкий график обсуждаем, но не подтверждаем заранее. Ход А создаёт ожидание, которое команда может не поддержать. Ход Б позволяет проверить альтернативу и договориться о следующем контакте. Если график окажется невозможным и ранний уход для кандидата обязателен, отказ будет обоснованным исходом.</p>
+<button type="button" id="continue">К следующему разговору</button>
+</section>
+</div></div></div>
+<section id="next-conversation" aria-labelledby="next-title" hidden><h1 id="next-title" tabindex="-1">Разговор 2. Сомнение в роли</h1><p>Кандидат сомневается, сможет ли самостоятельно менять процессы. Подтверждено, что он сможет менять распределение обращений. Решения о составе команды согласует директор.</p></section>
+</main>
+<script>
+const form = document.querySelector('#practice');
+const moveHint = document.querySelector('#move-hint');
+const reasonHint = document.querySelector('#reason-hint');
+const retryInfo = document.querySelector('#retry-info');
+const result = document.querySelector('#result');
+const submit = document.querySelector('#submit');
+const firstConversation = document.querySelector('#first-conversation');
+const nextTitle = document.querySelector('#next-title');
+const nextConversation = document.querySelector('#next-conversation');
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  if (!result.hidden) return;
+  const answers = new FormData(form);
+  const wrongMove = answers.get('move') !== 'b';
+  const wrongReason = answers.get('reason') !== '1';
+  const isCorrect = !wrongMove && !wrongReason;
+  moveHint.hidden = !wrongMove;
+  reasonHint.hidden = !wrongReason;
+  retryInfo.hidden = isCorrect;
+  if (!isCorrect) {
+    const firstVisibleHint = wrongMove ? moveHint : reasonHint;
+    firstVisibleHint.focus();
+    return;
+  }
+  form.querySelectorAll('fieldset').forEach(group => { group.disabled = true; });
+  submit.hidden = true;
+  result.hidden = false;
+  result.focus();
+});
+document.querySelector('#continue').addEventListener('click', () => {
+  firstConversation.hidden = true;
+  nextConversation.hidden = false;
+  nextTitle.focus();
+  window.scrollTo(0, 0);
+});
+</script></body></html>
